@@ -4,9 +4,52 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>groupId</groupId>
-    <artifactId>blog-backend</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <parent>
+        <groupId>blog</groupId>
+        <artifactId>blog-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modules>
+        <module>../blog-parent</module>
+    </modules>
 
-    
+    <build>
+        <plugins>
+<!--            自动创建必备文件夹插件-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>create-directory</id>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <outputDirectory>${project.basedir}/src/main/java/digediao</outputDirectory>
+                            <outputDirectory>${project.basedir}/src/main/java/digediao/controller</outputDirectory>
+                            <outputDirectory>${project.basedir}/src/main/java/digediao/entity</outputDirectory>
+                            <outputDirectory>${project.basedir}/src/main/java/digediao/service</outputDirectory>
+                            <outputDirectory>${project.basedir}/src/main/java/digediao/config</outputDirectory>
+                            <outputDirectory>${project.basedir}/src/main/java/digediao/pojo</outputDirectory>
+                            <outputDirectory>${project.basedir}/src/main/java/digediao/utils</outputDirectory>
+                            <outputDirectory>${project.basedir}/src/main/java/digediao/exception</outputDirectory>
+                            <outputDirectory>${project.basedir}/src/main/java/digediao/mapper</outputDirectory>
+                            <outputDirectory>${project.basedir}/src/main/java/digediao/handler</outputDirectory>
+                            <outputDirectory>${project.build.testSourceDirectory}/java/digediao</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/src/main/resources/template</directory>
+                                    <directory>${project.basedir}/src/main/resources/static</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
